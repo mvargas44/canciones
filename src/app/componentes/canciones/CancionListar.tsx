@@ -1,7 +1,7 @@
 export const CancionListar = () =>{
     return(
         <>
-        Canciòn Listar <br />
+        Canción Listar <br />
         Canciones...
         </>
     )

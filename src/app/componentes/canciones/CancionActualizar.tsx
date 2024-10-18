@@ -1,7 +1,7 @@
 export const CancionActualizar = ()=>{
     return(
         <>
-        Canciòn actualizar <br />
+        Canción actualizar <br />
         Canciones...
         </>
     )

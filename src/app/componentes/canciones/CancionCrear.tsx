@@ -1,7 +1,7 @@
 export const CancionCrear = () =>{
     return(
         <>
-        Canciòn Crear <br />
+        Canción Crear <br />
         Canciones...
         </>
     )
