@@ -1,52 +1,51 @@
+import { useState } from "react"
+import { Cancion } from "../../modelos/Cancion";
+import { ARREGLO_CANCIONES } from "../../mocks/Cancion-mocks";
+import { ARREGLO_CANCION_GENERO } from "../../utilidades/dominios/DomGenero";
+
 export const CancionListar = () => {
+    const [arrCanciones] = useState<Cancion[]>(ARREGLO_CANCIONES);
+
+    const nombreGenero = (valor: string) => {
+        for (const objGene of ARREGLO_CANCION_GENERO) {
+            if (objGene.codGenero == valor) {
+                return objGene.nombreGenero;
+            }
+        }
+    }
+
     return (
         <>
-        <div className="pt-5 d-flex justify-content-center">
-            <div className="col-md-8">
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Título Canción</th>
-                        <th>Cantante</th>
-                        <th>Duración</th>
-                        <th>Género</th>
-                    </tr>
-                </thead>
+            <div className="pt-5 d-flex justify-content-center">
+                <div className="col-md-8">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Título Canción</th>
+                                <th>Cantante</th>
+                                <th>Género</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>La noche</td>
-                        <td>Joe Arroyo</td>
-                        <td>4.5</td>
-                        <td>Salsa</td>
+ 
+                {arrCanciones.map((miCan:Cancion)=>(
+                    <tr key={miCan.codCancion}>
+                        <td>{miCan.codCancion}</td>
+                        <td>{miCan.tituloCancion}</td>
+                        <td>{miCan.cantanteCancion}</td>
+                        <td>{nombreGenero(miCan.codGeneroCancion)}</td>
+                        <td>
+                        <img src="{miCan.ImagenCancionBase64}" alt="" className="ImagenListado" />
+                        <br />
+                        {miCan.imagenCancion}
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>                    
-                        <td>Mi ex tenía razón</td>
-                        <td>Karol G</td>
-                        <td>3.5</td>
-                        <td>Reguetón</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sin medir distancia</td>
-                        <td>Diomedes Díaz</td>
-                        <td>4.8</td>
-                        <td>Vallenato</td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td>My Immortal</td>
-                        <td>Evanescence</td>
-                        <td>4.3</td>
-                        <td>Rock</td>
-                    </tr>
-
-                </tbody>
-            </table>
-            </div>
+                ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     )
